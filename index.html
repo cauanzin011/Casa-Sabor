@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Sabor — Comidas brasileiras, saladas e sobremesas feitos na hora</title>
+<meta name="description" content="Casa Sabor: saladas, bowls quentes, pratos tradicionais brasileiros (como feijoada) e acompanhamentos, feitos com ingredientes de verdade. Veja o cardápio, promoções e horários.">
+<meta name="theme-color" content="#f4f3e7">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥗</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,300&family=Inter:wght@400;500;700&family=Outfit:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="container nav__inner">
+    <a href="#top" class="nav__logo"><img class="logo" src="./imagens/logo.png" alt="logo casa sabor"></a>
+    <nav class="nav__links" aria-label="Navegação principal">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#localizacao">Localização</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav__right">
+      <button class="btn btn--outline nav__cta" id="btn-ask">Seu Pedido</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navPanel">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav__panel" id="navPanel">
+    <a href="#cardapio">Cardápio</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#contato">Contato</a>
+    <a href="#cardapio" class="btn btn--fill">Pedir</a>
+  </div>
+</header>
+
+<main id="top">
+
+    <div class="cart">
+      <button class="cart__close">X</button>
+        <h2>Seu pedido</h2>
+        <div class="cart__items"></div>
+        <p class="cart__total">R$ 0,00</p>
+        <button class="buy">Finalizar pedido</button>
+    </div>
+
+    <div class="order-confirmation">
+      <button class="order-confirmation__done">Concluído</button>
+      <p class="order-confirmation__message"></p>
+      <p class="order-confirmation__total"></p>
+      <p class="order-confirmation__time"></p>
+    </div>
+
+  <section class="hero" aria-label="Destaque do dia">
+    <img class="hero__img" src="https://maispinhais.com.br/wp-content/uploads/2025/04/Bife-a-Parmegiana-Rapido-e-Facil.jpg"
+         alt="Bowl Buda colorido com legumes frescos, tofu grelhado e molho de gergelim, visto de cima" loading="eager" fetchpriority="high">
+    <div class="hero__overlay">
+      <p class="eyebrow">Novo no cardápio</p>
+      <h1 class="hero__title">Bife à Parmegiana</h1>
+      <a href="#cardapio" class="btn btn--fill">Peça agora</a>
+    </div>
+  </section>
+
+  <section class="promo" id="promocoes">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Promoções</p>
+        <h2>Vantagens para quem pede sempre.</h2>
+      </div>
+      <div class="promo-grid">
+        <article class="promo-card">
+          <p class="promo-card__tag">Primeiro pedido</p>
+          <h3 class="promo-card__title">10% de desconto</h3>
+          <p class="promo-card__desc">Válido no site e no aplicativo para a sua primeira compra na Casa Sabor.</p>
+        </article>
+        <article class="promo-card">
+          <p class="promo-card__tag">Toda quarta e sábado</p>
+          <h3 class="promo-card__title">Feijoada em dobro</h3>
+          <p class="promo-card__desc">Peça uma feijoada completa e ganhe uma porção extra de torresmo, de cortesia.</p>
+        </article>
+        <article class="promo-card">
+          <p class="promo-card__tag">Acima de R$ 60</p>
+          <h3 class="promo-card__title">Frete grátis</h3>
+          <p class="promo-card__desc">Entrega sem custo para pedidos elegíveis dentro da região central de BH.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="cardapio">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Cardápio</p>
+        <h2>Montado na hora, com ingredientes de verdade.</h2>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Categorias do cardápio">
+        <button class="tab is-active" role="tab" aria-selected="false" data-category="tradicionais">Pratos Tradicionais</button>
+        <button class="tab" role="tab" aria-selected="true" data-category="saladas">Saladas</button>
+        <button class="tab" role="tab" aria-selected="false" data-category="acompanhamentos">Acompanhamentos</button>
+        <button class="tab" role="tab" aria-selected="false" data-category="sobremesas">Sobremesas</button>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+
+        <!-- Pratos Tradicionais -->
+        <article class="product-card" data-category="tradicionais">
+          <div class="product-card__media">
+            <span class="product-card__badge">Qua e sáb</span>
+            <img src="https://images.pexels.com/photos/34195321/pexels-photo-34195321.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop"
+                 alt="Feijoada completa brasileira com arroz, couve e laranja" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Feijoada Completa</h3>
+            <span class="product-card__price">R$ 39,90</span>
+          </div>
+          <p class="product-card__desc">Feijão preto com carnes nobres, arroz branco, couve, farofa e laranja.</p>
+          <a href="#" class="ghost-link" data-name="Feijoada completa" data-price="39.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="tradicionais">
+          <div class="product-card__media">
+            <img src="https://imgs.search.brave.com/P7H6uXlVE4-_Z_u1EamPaUoHh-E5Suai2uHX7kLbDrE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS91bS1wcmF0by1k/ZS1jb21pZGEtY29t/LXVtLXByYXRvLWRl/LWFsaW1lbnRvLXF1/ZS10ZW0tdW0tbW9s/aG8tdmVybWVsaG8t/bmVsZV8xMzQyNDQw/LTkxMjguanBnP3Nl/bXQ9YWlzX2h5YnJp/ZA"
+                 alt="Bife à Parmegiana" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Bife à Parmegiana</h3>
+            <span class="product-card__price">R$ 36,90</span>
+          </div>
+          <p class="product-card__desc">Bife empanado, coberto com molho de tomate e queijo derretido, acompanhado de arroz branco e batata frita.</p>
+          <a href="#" class="ghost-link" data-name="Bife à Parmegiana" data-price="36.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="tradicionais">
+          <div class="product-card__media">
+            <img src="https://imgs.search.brave.com/WsHKldJtDJmvqquQlK3Q2ET6jPwfspwbt7BVG9kuqqc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L2ZvdG9zLXByZW1p/dW0vYXJyb3otZmVp/amFvLWJhdGF0YS1m/cml0YS1lLWJpZmUt/ZGUtdmFjYV80MzI1/NjYtMTMyMy5qcGc_/c2VtdD1haXNfaHli/cmlkJnc9NzQwJnE9/ODA"
+                 alt="Pf brasileiro Tradicional" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Pf Brasileiro Tradicional</h3>
+            <span class="product-card__price">R$ 29,90</span>
+          </div>
+          <p class="product-card__desc">Carne cozida lentamente com cebola e temperos mineiros, com farofa.</p>
+          <a href="#" class="ghost-link" data-name="Pf Brasileiro Tradicional" data-price="29.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Saladas -->
+        <article class="product-card" data-category="saladas" style="display:none">
+          <div class="product-card__media">
+            <img src="https://images.pexels.com/photos/3872370/pexels-photo-3872370.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop"
+                 alt="Salada de quinoa com vegetais frescos, vista de cima" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Quinoa &amp; Vegetais Frescos</h3>
+            <span class="product-card__price">R$ 27,90</span>
+          </div>
+          <p class="product-card__desc">Mistura vibrante de quinoa, pepino, tomate-cereja e ervas frescas, com limão.</p>
+          <a href="#" class="ghost-link" data-name="Quinoa e Vegetais Frescos" data-price="27.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="saladas" style="display:none;">
+          <div class="product-card__media">
+            <img src="https://images.pexels.com/photos/3794378/pexels-photo-3794378.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop"
+                 alt="Salada vegana com grão-de-bico, abacate e folhas verdes" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Grão-de-Bico &amp; Abacate</h3>
+            <span class="product-card__price">R$ 26,90</span>
+          </div>
+          <p class="product-card__desc">Folhas verdes, grão-de-bico temperado, abacate cremoso e sementes tostadas.</p>
+          <a href="#" class="ghost-link" data-name="Grão-de-Bico e Abacate" data-price="26.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="saladas" style="display:none;">
+          <div class="product-card__media">
+            <img src="https://images.pexels.com/photos/4198015/pexels-photo-4198015.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop"
+                 alt="Salada Caesar com folhas de alface e tomate, vista de cima" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Caesar com Frango Grelhado</h3>
+            <span class="product-card__price">R$ 29,90</span>
+          </div>
+          <p class="product-card__desc">Alface americana, frango grelhado, croutons e parmesão com molho caesar.</p>
+          <a href="#" class="ghost-link" data-name="Caesar com Frango Grelhado" data-price="29.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Acompanhamentos -->
+        <article class="product-card" data-category="acompanhamentos" style="display:none">
+          <div class="product-card__media">
+            <span class="product-card__badge">Só no app</span>
+            <img src="https://imgs.search.brave.com/4AjMyAtCdKxvRhBAP10IU-guVD8ZoTsOmMLK9hanycw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L2ZvdG9zLWdyYXRp/cy9iYXRhdGFzLWZy/aXRhcy1iYXRhdGFz/LWZyaXRhcy1uYS1t/ZXNhLWRlLW1hZGVp/cmFfMTIzODI3LTI2/NjkxLmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDAmcT04MA"
+                 alt="Batata frita" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Batata Frita</h3>
+            <span class="product-card__price">R$ 14,90</span>
+          </div>
+          <p class="product-card__desc">Batatas crocantes por fora, macias por dentro e servidas bem quentinhas.</p>
+          <a href="#" class="ghost-link" data-name="Batata Frita" data-price="14.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="acompanhamentos" style="display:none">
+          <div class="product-card__media">
+            <img src="https://imgs.search.brave.com/PZIGp9__CLC9iFZ3CPs-1UMQ5EOWcWOjtv03bv50K2E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE2/Nzc5NDgxNTYzODYt/MzQ0NmZlZDdhYTQw/P2ZtPWpwZyZxPTYw/Jnc9MzAwMCZhdXRv/PWZvcm1hdCZmaXQ9/Y3JvcCZpeGxpYj1y/Yi00LjEuMCZpeGlk/PU0zd3hNakEzZkRC/OE1IeHpaV0Z5WTJo/OE1UZDhmR052WTJG/amIyeGhmR1Z1ZkRC/OGZEQjhmSHd3"
+                 alt="Latinha de Coca Cola" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Latinha de Coca Cola</h3>
+            <span class="product-card__price">R$ 6,50</span>
+          </div>
+          <p class="product-card__desc">Coca-Cola gelada, refrescante e perfeita para acompanhar sua refeição.</p>
+          <a href="#" class="ghost-link" data-name="Latinha de Coca Cola" data-price="6.50">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="acompanhamentos" style="display:none">
+          <div class="product-card__media">
+            <img src="https://imgs.search.brave.com/bV_VHevQR-yUljS9fD-8qVTyt-tIsE6oy0SRSU9alXc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdDUu/ZGVwb3NpdHBob3Rv/cy5jb20vMjIzNDEw/MzgvNjc3NzAvaS80/NTAvZGVwb3NpdHBo/b3Rvc182Nzc3MDQ4/NDYtc3RvY2stcGhv/dG8tb2Rlc3NhLXVr/cmFpbmUtcGVwc2kt/Y29sYS1kcmluay5q/cGc"
+                 alt="Latinha de Pepsi" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Latinha de Pepsi</h3>
+            <span class="product-card__price">R$ 6,00</span>
+          </div>
+          <p class="product-card__desc">Pepsi gelada, refrescante e com o sabor clássico de pepsi.</p>
+          <a href="#" class="ghost-link" data-name="Latinha de Pepsi" data-price="6.00">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+        
+        <!-- Sobremesas -->
+        <article class="product-card" data-category="sobremesas" style="display:none">
+          <div class="product-card__media">
+            <img src="https://imgs.search.brave.com/YfIvi1sxVSJ29TUAuGJi3VRcAW-usMes15PogbEkgJQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L2ZvdG9zLXByZW1p/dW0vcHVkaW0tZGUt/bGVpdGUtY29uZGVu/c2Fkby1lLWdlbWEt/ZGUtb3ZvLWNvbS1k/ZWxpY2lvc2EtY2Fs/ZGEtcGluZ2FuZG8t/Y2FzZWlyYS1zb2Jy/ZS1tZXNhLWRlLW1h/cm1vcmVfMjIyOTQ1/LTczLmpwZz9zZW10/PWFpc190ZXN0X2Im/dz03NDAmcT04MA"
+                 alt="Pudim" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Pudim</h3>
+            <span class="product-card__price">R$ 12,90</span>
+          </div>
+          <p class="product-card__desc">Pudim cremoso e delicado, coberto com uma irresistível calda de caramelo.</p>
+          <a href="#" class="ghost-link" data-name="Pudim" data-price="12.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="sobremesas" style="display:none">
+          <div class="product-card__media">
+            <img src="https://imgs.search.brave.com/h_mjFys_RDS5lBTR2FuQeDXjAwK6cXMyM-1u9PfOudY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNy8w/Ny8yNS8xOS8wMC9i/aXJ0aGRheS1jYWtl/LTI1MzkxNzBfNjQw/LmpwZw"
+                 alt="Bolo com Cobertura de Chocolate" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Bolo de Chocolate</h3>
+            <span class="product-card__price">R$ 13,90</span>
+          </div>
+          <p class="product-card__desc">Bolo de chocolate macio e fofinho, coberto com uma deliciosa calda de chocolate.</p>
+          <a href="#" class="ghost-link" data-name="Bolo de Chocolate" data-price="13.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="product-card" data-category="sobremesas" style="display:none">
+          <div class="product-card__media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbaKQdYCxWS7Y3r6ZdogwP5YH8VDc1_yuH6zkYiCLukvj4gt4zzPB6wvM&s=10"
+                 alt="Torta de Morango" loading="lazy">
+          </div>
+          <div class="product-card__head">
+            <h3 class="product-card__name">Torta de Morango</h3>
+            <span class="product-card__price">R$ 15,90</span>
+          </div>
+          <p class="product-card__desc">Torta cremosa com morangos frescos, massa crocante e cobertura delicada.</p>
+          <a href="#" class="ghost-link" data-name="Torta de Morango" data-price="15.90">Peça agora <span aria-hidden="true">→</span></a>
+        </article>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <section class="split split--sage" id="sobre">
+    <div class="container split__inner">
+      <div class="split__text">
+        <p class="eyebrow">Sobre a casa sabor</p>
+        <h2 class="split__title">Comida boa começa com ingredientes de verdade.</h2>
+        <div class="split__points">
+          <div class="split__point">
+            <p class="split__label">Direto do produtor</p>
+            <p class="split__body">Trabalhamos com produtores locais para trazer vegetais frescos, colhidos na mesma semana.</p>
+          </div>
+          <div class="split__point">
+            <p class="split__label">Sem atalhos</p>
+            <p class="split__body">Sem conservantes, sem ultraprocessados. Cada prato é montado na hora, no balcão.</p>
+          </div>
+        </div>
+      </div>
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/7658474/pexels-photo-7658474.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Variedade colorida de vegetais frescos em uma feira livre" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="avaliacoes">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Avaliações</p>
+        <h2>O que dizem sobre a casa sabor</h2>
+      </div>
+      <p class="rating-summary">4,8 de 5 — mais de 1.200 avaliações no Google e no aplicativo.</p>
+      <div class="review-grid">
+        <article class="review-card">
+          <p class="review-card__stars" aria-label="5 de 5 estrelas">★★★★★</p>
+          <p class="review-card__quote">"O Pf é o meu almoço de quase todo dia. Sempre fresco e chega rápido."</p>
+          <p class="review-card__author">Marina T. — Savassi</p>
+        </article>
+        <article class="review-card">
+          <p class="review-card__stars" aria-label="5 de 5 estrelas">★★★★★</p>
+          <p class="review-card__quote">"A feijoada de quarta-feira virou rotina da semana aqui no escritório."</p>
+          <p class="review-card__author">Carlos E. — Belo Horizonte</p>
+        </article>
+        <article class="review-card">
+          <p class="review-card__stars" aria-label="4 de 5 estrelas">★★★★☆</p>
+          <p class="review-card__quote">"Peço para reuniões o tempo todo. Prático, chega quentinho e todo mundo gosta."</p>
+          <p class="review-card__author">Renata A. — Barro Preto</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="split split--sand split--reverse" id="localizacao">
+    <div class="container split__inner">
+      <div class="split__text">
+        <p class="eyebrow">Localização &amp; Funcionamento</p>
+        <h2 class="split__title">Visite a nossa casa em Belo Horizonte.</h2>
+
+        <p class="location__status">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="statusText" id="statusText">Verificando horário de funcionamento…</span>
+        </p>
+
+        <dl class="hours-list">
+          <div><dt>Segunda a sexta</dt><dd>11h às 22h</dd></div>
+          <div><dt>Sábado</dt><dd>11h às 23h</dd></div>
+          <div><dt>Domingo</dt><dd>12h às 21h</dd></div>
+        </dl>
+        <p class="location__note">Feijoada completa disponível às quartas e sábados, das 11h às 16h.</p>
+        <p class="location__address">Rua Pium-Í, 200 - Cruzeiro, Belo Horizonte, MG</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Pium-i+200+Savassi+Belo+Horizonte" target="_blank" rel="noopener" class="btn btn--outline">Como chegar</a>
+      </div>
+      <div class="split__media location__map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d937.6503509074107!2d-43.930422545813435!3d-19.941194928505674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1788806650050!5m2!1spt-BR!2sbr" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Mapa de localização da Casa Sabor"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="split split--sage" id="empresas">
+    <div class="container split__inner">
+      <div class="split__text">
+        <p class="eyebrow">Para eventos e empresas</p>
+        <h2 class="split__title">Leve a <span class="brand-name">Casa Sabor</span> para sua equipe.</h2>
+        <div class="split__points">
+          <div class="split__point">
+            <p class="split__label">Pedidos em grupo</p>
+            <p class="split__body">Cardápio especial para reuniões e eventos, com entrega agendada no seu escritório.</p>
+          </div>
+          <div class="split__point">
+            <p class="split__label">Fácil de organizar</p>
+            <p class="split__body">Monte o pedido em minutos e receba tudo embalado e identificado, pronto para servir.</p>
+          </div>
+        </div>
+        <a href="#contato" class="ghost-link" style="margin-top:8px">Fale com a gente <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="split__media">
+        <img src="https://www.cheffelipeoria.com.br/cdn/shop/files/rn-image_picker_lib_temp_f11f0091-6b62-4e40-b0b1-bc7cae7b8d3d.png?v=1777752146"
+             alt="Prato gourmet de vegetais servido de forma elegante" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container cta-band__inner">
+      <p class="cta-band__quote">"Comida de verdade não devia ser complicada."</p>
+      <h2 class="cta-band__title">Peça agora e receba fresquinho onde você estiver.</h2>
+      <a href="#cardapio" class="btn btn--fill">Ver cardápio completo</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contato">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="logo__end" src="./imagens/logo.png" alt="logo">
+      <p class="footer__tagline">Saladas, sobremesas e pratos brasileiros feitos na hora — todos os dias.</p>
+    </div>
+    <div class="footer__col">
+      <p class="footer__heading">Cardápio</p>
+      <a href="#cardapio">Pratos Tradicionais</a>
+      <a href="#cardapio">Saladas</a>
+      <a href="#cardapio">Acompanhamentos</a>
+      <a href="#cardapio">Sobremesas</a>
+    </div>
+    <div class="footer__col">
+      <p class="footer__heading">Casa Sabor</p>
+      <a href="#sobre">Sobre</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#promocoes">Promoções</a>
+      <a href="#empresas">Para Empresas</a>
+    </div>
+    <div class="footer__col">
+      <p class="footer__heading">Contato</p>
+      <p>Rua Pium-í, 200 — Cruzeiro</p>
+      <p>Belo Horizonte, MG</p>
+      <p>(31) 4002-8922</p>
+      <p>contato@casasabor.com.br</p>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <p>© 2026 Casa Sabor. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
