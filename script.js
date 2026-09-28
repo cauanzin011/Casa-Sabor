@@ -1,245 +1,218 @@
-const tabButtons = document.querySelectorAll(".tab")
-const productCards = document.querySelectorAll(".product-card")
-const mobileNavLinks = document.querySelectorAll(".nav__panel a")
-const orderButtons = document.querySelectorAll(".ghost-link")
-const statusDot = document.querySelector(".status-dot")
-const statusText = document.querySelector(".statusText")
-const cartPanel = document.querySelector(".cart")
-const closeCartBtn = document.querySelector(".cart__close")
-const doneBtn = document.querySelector(".order-confirmation__done")
-const cartItemsContainer = document.querySelector(".cart__items")
-const cartTotalEl = document.querySelector(".cart__total")
-const checkoutBtn = document.querySelector(".buy")
-const orderConfirmation = document.querySelector(".order-confirmation")
-const confirmationMessage = document.querySelector(".order-confirmation__message")
-const orderTimeEl = document.querySelector(".order-confirmation__time")
-const nav = document.getElementById("siteNav")
-const mobileMenuToggle = document.getElementById("navToggle")
-const cartToggleBtn = document.getElementById("btn-ask")
- 
- 
-tabButtons.forEach((tabButton) => {
-    tabButton.addEventListener("click", (event) => {
- 
-        const category = event.currentTarget.dataset.category
- 
-        tabButtons.forEach((otherTabButton) => {
-            otherTabButton.classList.remove("is-active")
+const botoesCardapio = document.querySelectorAll(".btnAbaCategoria")
+const cardapio = document.querySelectorAll(".cartaoProduto")
+const linksMobile = document.querySelectorAll(".painelMenuMobile a")
+const botoesAdicionarItem = document.querySelectorAll(".btnAdicionarItem")
+const pontoStatusFuncionamento = document.querySelector(".pontoStatus")
+const textoStatusFuncionamento = document.querySelector(".textoStatus")
+const divCarrinhoLateral = document.querySelector(".divCarrinhoLateral")
+const btnFecharCarrinho = document.querySelector(".btnFecharCarrinho")
+const btnConcluidoPedido = document.querySelector(".btnConcluido")
+const divProdutosCarrinho = document.querySelector(".divProdutosCarrinho")
+const textoValorTotal = document.querySelector(".textoValorTotal")
+const btnFinalizarPedido = document.querySelector(".btnFinalizarPedido")
+const modalPedidoConcluido = document.querySelector(".modalPedidoConcluido")
+const mensagemPedido = document.querySelector(".mensagemPedido")
+const horarioDoPedido = document.querySelector(".horarioDoPedido")
+const menuNavegacao = document.getElementById("headerMenu")
+const btnAlternadorMobile = document.getElementById("btnAlternadorMobile")
+const btnAbrirCarrinho = document.getElementById("btnAbrirCarrinho")
+
+function salvarPedido(){
+    localStorage.setItem("pedido", JSON.stringify(pedido))
+}
+
+botoesCardapio.forEach((botao) => {
+    botao.addEventListener("click", (evento) => {
+        const categoria = evento.currentTarget.dataset.categoria
+        
+        botoesCardapio.forEach((botaoAtual) => {
+            botaoAtual.classList.remove("ativa")
         })
- 
-        tabButton.classList.add("is-active")
- 
-        productCards.forEach((card) => {
- 
-            if(category === card.dataset.category){
-                card.style.display = ""
+        
+        botao.classList.add("ativa")
+        
+        cardapio.forEach((produto) => {
+            if(categoria === produto.dataset.categoria){
+                produto.style.display = ""
             }else{
-                card.style.display = "none"
+                produto.style.display = "none"
             }
- 
         })
     })
 })
+
+function verificarHorarioFuncionamento(){
+    let dataAtual = new Date()
+    let dia = dataAtual.getDay()
+    let hora = dataAtual.getHours()
  
- 
-function updateOpenStatus(){
- 
-    let now = new Date()
-    let day = now.getDay()
-    let hour = now.getHours()
-    let minute = now.getMinutes()
- 
-    orderTimeEl.textContent = `${hour}:${minute.toString().padStart(2, "0")}`
- 
-    if(day >= 1 && day <= 5){
- 
-        if(hour >= 11 && hour <= 21){
-            statusDot.style.background = "#00473c"
-            statusText.textContent = "Aberto agora"
+    if(dia >= 1 && dia <= 5){
+        if(hora >= 11 && hora <= 21){
+            pontoStatusFuncionamento.style.background = "#00473c"
+            textoStatusFuncionamento.textContent = "Aberto agora"
         }else{
-            statusDot.style.background = "#6e0000"
-            statusText.textContent = "Estamos Fechados"
+            pontoStatusFuncionamento.style.background = "#6e0000"
+            textoStatusFuncionamento.textContent = "Estamos Fechados"
         }
- 
-    }else if(day === 6){
- 
-        if(hour >= 11 && hour <= 22){
-            statusDot.style.background = "#00473c"
-            statusText.textContent = "Aberto agora"
+    }else if(dia === 6){
+        if(hora >= 11 && hora <= 22){
+            pontoStatusFuncionamento.style.background = "#00473c"
+            textoStatusFuncionamento.textContent = "Aberto agora"
         }else{
-            statusDot.style.background = "#6e0000"
-            statusText.textContent = "Estamos Fechados"
+            pontoStatusFuncionamento.style.background = "#6e0000"
+            textoStatusFuncionamento.textContent = "Estamos Fechados"
         }
- 
     }else{
- 
-        if(hour >= 12 && hour <= 20){
-            statusDot.style.background = "#00473c"
-            statusText.textContent = "Aberto agora"
+        if(hora >= 12 && hora <= 20){
+            pontoStatusFuncionamento.style.background = "#00473c"
+            textoStatusFuncionamento.textContent = "Aberto agora"
         }else{
-            statusDot.style.background = "#6e0000"
-            statusText.textContent = "Estamos Fechados"
+            pontoStatusFuncionamento.style.background = "#6e0000"
+            textoStatusFuncionamento.textContent = "Estamos Fechados"
         }
- 
     }
 }
- 
- 
-updateOpenStatus()
-setInterval(updateOpenStatus, 60000)
- 
- 
-mobileMenuToggle.addEventListener("click", () => {
-    nav.classList.toggle("is-open")
+
+verificarHorarioFuncionamento()
+setInterval(verificarHorarioFuncionamento, 60000)
+
+btnAlternadorMobile.addEventListener("click", () => {
+    menuNavegacao.classList.toggle("aberto")
 })
- 
- 
-mobileNavLinks.forEach((link) => {
- 
-    link.addEventListener("click", () => {
-        nav.classList.remove("is-open")
+
+linksMobile.forEach((linkSelecionado) => {
+    linkSelecionado.addEventListener("click", () => {
+        menuNavegacao.classList.remove("aberto")
     })
- 
 })
- 
- 
-cartToggleBtn.addEventListener("click", () => {
-    cartPanel.classList.toggle("is-visible")
+
+btnAbrirCarrinho.addEventListener("click", () => {
+    divCarrinhoLateral.classList.toggle("mostrar")
 })
+
+let pedido = JSON.parse(localStorage.getItem("pedido")) || []
+
+function atualizarNota(){
+    divProdutosCarrinho.innerHTML = ""
  
+    pedido.forEach((item) => {
+        let botaoRemover = document.createElement("button")
+        let produtoNota = document.createElement("div")
+        let botaoAdicionar = document.createElement("button")
  
-let cart = []
+        produtoNota.textContent = `${item.nome} (x${item.quantidade}) — R$ ${item.preco.toFixed(2).replace(".", ",")}`
  
+        botaoRemover.textContent = "-"
+        botaoAdicionar.textContent = "+"
  
-function updateCart(){
- 
-    cartItemsContainer.innerHTML = ""
- 
-    cart.forEach((item) => {
- 
-        let decreaseBtn = document.createElement("button")
-        let itemLine = document.createElement("div")
-        let increaseBtn = document.createElement("button")
- 
-        itemLine.textContent = `${item.name} (x${item.quantity}) — R$ ${item.price.toFixed(2).replace(".", ",")}`
- 
-        decreaseBtn.textContent = "-"
-        increaseBtn.textContent = "+"
- 
-        cartItemsContainer.appendChild(decreaseBtn)
-        cartItemsContainer.appendChild(itemLine)
-        cartItemsContainer.appendChild(increaseBtn)
- 
- 
-        decreaseBtn.addEventListener("click", () => {
- 
-            if(item.quantity === 1){
- 
-                cart = cart.filter((entry) => {
-                    return entry !== item
+        divProdutosCarrinho.appendChild(botaoRemover)
+        divProdutosCarrinho.appendChild(produtoNota)
+        divProdutosCarrinho.appendChild(botaoAdicionar)
+
+        botaoRemover.addEventListener("click", () => {
+            if(item.quantidade === 1){
+                pedido = pedido.filter((produto) => {
+                    return produto !== item
                 })
- 
-                
-                updateCart()
-                
+                salvarPedido()
+                atualizarNota()
             }else{
-                
-                item.quantity = item.quantity - 1
- 
-                updateCart()
- 
+                item.quantidade = item.quantidade - 1
+                salvarPedido()
+                atualizarNota()
             }
- 
         })
- 
- 
-        increaseBtn.addEventListener("click", () => {
- 
-            item.quantity = item.quantity + 1
- 
-            updateCart()
- 
+
+        botaoAdicionar.addEventListener("click", () => {
+            if(item.quantidade < 20){
+                item.quantidade = item.quantidade + 1
+            }else{
+                window.alert("O limite é 20")
+            }
+            salvarPedido()
+            atualizarNota()
         })
- 
     })
- 
- 
-    updateTotal()
- 
+
+    resultado()
 }
- 
- 
-function updateTotal(){
- 
-    let total = cart.reduce((sum, cartItem) => {
- 
-        return sum + (cartItem.price * cartItem.quantity)
- 
+
+function resultado(){
+    let valorSomado = pedido.reduce((soma, notaValor) => {
+        return soma + (notaValor.preco * notaValor.quantidade)
     }, 0)
  
-    let finalTotalEl = document.querySelector(".order-confirmation__total")
+    let valorFinalPedido = document.querySelector(".valorFinalPedido")
  
-    confirmationMessage.textContent = "A sua compra foi feita!"
-    finalTotalEl.textContent = `O total da sua compra foi de R$ ${total.toFixed(2).replace(".", ",")}`
- 
-    cartTotalEl.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`
- 
-    
- 
+    mensagemPedido.textContent = "A sua compra foi feita!"
+    valorFinalPedido.textContent = `O total da sua compra foi de R$ ${valorSomado.toFixed(2).replace(".", ",")}`
+    textoValorTotal.textContent = `R$ ${valorSomado.toFixed(2).replace(".", ",")}`
 }
- 
- 
-orderButtons.forEach((btn) => {
- 
-    btn.addEventListener("click", (event) => {
- 
-        event.preventDefault()
- 
-        let productName = event.currentTarget.dataset.name
-        let productPrice = Number(event.currentTarget.dataset.price)
- 
-        const existingItem = cart.find((entry) => {
-            return entry.name === productName
-        })
- 
- 
-        if(existingItem){
- 
-            existingItem.quantity += 1
- 
-        }else{
- 
-            cart.push({
-                name: productName,
-                price: productPrice,
-                quantity: 1
-            })
- 
+
+botoesAdicionarItem.forEach((botaoProduto) => {
+    botaoProduto.addEventListener("click", (evento) => {
+        evento.preventDefault()
+        btnAbrirCarrinho.classList.add("balancar")
+
+        setTimeout(() => {
+            btnAbrirCarrinho.classList.remove("balancar")
+        }, 500);
+
+        if(horarioDoPedido.textContent === "") {
+            let dataAtual = new Date();
+            let hora = dataAtual.getHours();
+            let minuto = dataAtual.getMinutes();
+            horarioDoPedido.textContent = `${hora.toString().padStart(2, "0")}:${minuto.toString().padStart(2, "0")}`;
         }
  
-        updateCart()
+        let nomeProduto = evento.currentTarget.dataset.nome
+        let precoProduto = Number(evento.currentTarget.dataset.preco)
  
+        const produtoEncontrado = pedido.find((produto) => {
+            return produto.nome === nomeProduto
+        })
+
+        if(produtoEncontrado){
+            produtoEncontrado.quantidade += 1
+        }else{
+            pedido.push({
+                nome: nomeProduto,
+                preco: precoProduto,
+                quantidade: 1
+            })
+        }
+        
+        pedido.forEach((produto) => {
+            if(produto.quantidade < 20){
+            }else{
+                window.alert("O limite é 20")
+            }
+        })
+
+        salvarPedido()
+        atualizarNota()
     })
- 
 })
- 
-closeCartBtn.addEventListener("click", () => {
-    cartPanel.classList.remove("is-visible")
+
+btnFecharCarrinho.addEventListener("click", () => {
+    divCarrinhoLateral.classList.remove("mostrar")
 })
- 
-doneBtn.addEventListener("click", () => {
-    orderConfirmation.classList.remove("is-visible")
-    cart = []
-    updateCart()
+
+btnConcluidoPedido.addEventListener("click", () => {
+    modalPedidoConcluido.classList.remove("mostrar")
+    pedido = []
+    salvarPedido()
+    atualizarNota()
 })
- 
-checkoutBtn.addEventListener("click", () => {
-    if(cart.length > 0){
-        orderConfirmation.classList.add("is-visible")
-        cartPanel.classList.remove("is-visible")
+
+btnFinalizarPedido.addEventListener("click", () => {
+    if(pedido.length > 0){
+        modalPedidoConcluido.classList.add("mostrar")
+        divCarrinhoLateral.classList.remove("mostrar")
+        salvarPedido()
     }else{
         window.alert("Você ainda não adicionou nenhum item ao pedido")
     }
- 
 })
- 
+
+atualizarNota()
