@@ -125,7 +125,7 @@ function atualizarNota(){
 
         botaoAdicionar.addEventListener("click", () => {
             if(item.quantidade < 20){
-                item.quantidade = item.quantidade + 1
+                item.quantidade++
             }else{
                 window.alert("O limite é 20")
             }
@@ -173,7 +173,12 @@ botoesAdicionarItem.forEach((botaoProduto) => {
         })
 
         if(produtoEncontrado){
-            produtoEncontrado.quantidade += 1
+            if(produtoEncontrado.quantidade < 20){
+                produtoEncontrado.quantidade++
+            }else{
+                window.alert("O limite é 20")
+            }
+            
         }else{
             pedido.push({
                 nome: nomeProduto,
@@ -181,13 +186,6 @@ botoesAdicionarItem.forEach((botaoProduto) => {
                 quantidade: 1
             })
         }
-        
-        pedido.forEach((produto) => {
-            if(produto.quantidade < 20){
-            }else{
-                window.alert("O limite é 20")
-            }
-        })
 
         salvarPedido()
         atualizarNota()
